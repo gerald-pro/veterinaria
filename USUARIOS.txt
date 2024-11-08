@@ -1,0 +1,12 @@
+Usuario 	Contraseña 	Perfil
+
+admin		admin		Administrador
+
+juli12 		12345 		Secretaria
+carla11 	12345 		Secretaria
+
+omar    	12345 		Veterinario | Medicina Interna
+roberto11	54321		Veterinario | Cirugía
+vanesa		12345		Veterinario | Dermatología
+maria		12345		Veterinario | Oftalmología
+boris           12345		Veterinario | Oncología
