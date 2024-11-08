@@ -1,7 +1,9 @@
 <?php
 
 require_once "../controladores/vacunacion.controlador.php";
+require_once "../controladores/mascota.controlador.php";
 require_once "../modelos/vacunacion.modelo.php";
+require_once "../modelos/mascota.modelo.php";
 
 class AjaxVacunaciones {
 
@@ -12,14 +14,10 @@ class AjaxVacunaciones {
     public $id;
 
     public function ajaxEditarVacunacion() {
-
-        $item = "id";
-        $valor = $this->id;
-
-        $respuesta = ControladorVacunacion::ctrMostrarVacunacion($item, $valor); 
-
+        $respuesta = ControladorVacunacion::buscarPorId($this->id);
+        $mascotas = ControladorMascota::ctrMostrarMascotasPorCliente($respuesta['id_cliente']);
+        $respuesta['mascotas'] = $mascotas;
         echo json_encode($respuesta); 
-
     }
 
 }

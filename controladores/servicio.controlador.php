@@ -5,13 +5,15 @@ class ControladorServicio
 
     static public function ctrMostrarServicio($item, $valor)
     {
-
         $tabla = "servicio";
-
         $respuesta = ModeloServicio::mdlMostrarServicio($tabla, $item, $valor);
-
         return $respuesta;
+    }
 
+    static public function buscarPorId($idServicio)
+    {
+        $respuesta = ModeloServicio::buscarPorId($idServicio);
+        return $respuesta;
     }
 
     static public function ctrCrearServicio()
@@ -19,14 +21,17 @@ class ControladorServicio
 
         if (isset($_POST["NuevoNombre"])) {
 
-            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["NuevoNombre"])&&
-            preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["NuevoCosto"])) {
+            if (
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["NuevoNombre"]) &&
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["NuevoCosto"])
+            ) {
 
                 $tabla = "servicio";
 
-                $datos = array("nombre" => $_POST["NuevoNombre"],
-                               "precio" => $_POST["NuevoCosto"]
-                               );
+                $datos = array(
+                    "nombre" => $_POST["NuevoNombre"],
+                    "precio" => $_POST["NuevoCosto"]
+                );
 
                 $respuesta = ModeloServicio::mdlIngresarServicio($tabla, $datos);
 
@@ -48,10 +53,7 @@ class ControladorServicio
                                 })
 
                     </script>';
-
                 }
-
-
             } else {
 
                 echo '<script>
@@ -70,11 +72,8 @@ class ControladorServicio
                         })
 
                   </script>';
-
             }
-
         }
-
     }
 
 
@@ -82,25 +81,28 @@ class ControladorServicio
     EDITAR CATEGORIA
     =============================================*/
 
-    static public function ctrEditarServicio(){
+    static public function ctrEditarServicio()
+    {
 
-        if(isset($_POST["EditarNombre"])){
+        if (isset($_POST["EditarNombre"])) {
 
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["EditarNombre"])&&
-            preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["EditarCosto"])  ){
+            if (
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["EditarNombre"])
+            ) {
 
                 $tabla = "servicio";
 
-                $datos = array("nombre"=>$_POST["EditarNombre"],
-                "precio"=>$_POST["EditarCosto"],
-            
-                               "id"=>$_POST["id"]);
+                $datos = array(
+                    "nombre" => $_POST["EditarNombre"],
+                    "precio" => $_POST["EditarCosto"],
+                    "idservicio" => $_POST["idServicio"]
+                );
 
                 $respuesta = ModeloServicio::mdlEditarServicio($tabla, $datos);
 
-                if($respuesta == "ok"){
+                if ($respuesta == "ok") {
 
-                    echo'<script>
+                    echo '<script>
 
                     swal({
                           type: "success",
@@ -116,13 +118,27 @@ class ControladorServicio
                                 })
 
                     </script>';
+                } else {
+                    echo '<script>
 
+                    swal({
+                          type: "error",
+                          title: "' . $respuesta . '",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar"
+                          }).then(function(result){
+                                    if (result.value) {
+
+                                    window.location = "servicio";
+
+                                    }
+                                })
+
+                    </script>';
                 }
+            } else {
 
-
-            }else{
-
-                echo'<script>
+                echo '<script>
 
                     swal({
                           type: "error",
@@ -138,11 +154,8 @@ class ControladorServicio
                         })
 
                   </script>';
-
             }
-
         }
-
     }
 
 
@@ -152,18 +165,16 @@ class ControladorServicio
     BORRAR CATEGORIA
     =============================================*/
 
-    static public function ctrBorrarServicio(){
+    static public function ctrBorrarServicio()
+    {
+        if (isset($_GET["id"])) {
+            $id = $_GET["id"];
 
-        if(isset($_GET["id"])){
+            $respuesta = ModeloServicio::mdlBorrarServicio($id);
 
-            $tabla ="servicio";
-            $datos = $_GET["id"];
+            if ($respuesta == "ok") {
 
-            $respuesta = ModeloServicio::mdlBorrarServicio($tabla, $datos);
-
-            if($respuesta == "ok"){
-
-                echo'<script>
+                echo '<script>
 
                     swal({
                           type: "success",
@@ -179,23 +190,32 @@ class ControladorServicio
                                 })
 
                     </script>';
+            } else {
+                echo '<script>
+
+                    swal({
+                          type: "error",
+                          title: "' . $respuesta . '",
+                          showConfirmButton: true,
+                          confirmButtonText: "Cerrar"
+                          }).then(function(result){
+                                    if (result.value) {
+
+                                    window.location = "servicio";
+
+                                    }
+                                })
+
+                    </script>';
             }
         }
-
     }
 
-    static public function ctrMostrarDetalleServicios($item, $valor, $orden){
+    static public function ctrMostrarDetalleServicios($item, $valor, $orden)
+    {
 
-		$respuesta = ModeloServicio::mdlMostrarDetalleServicios($item, $valor, $orden);
+        $respuesta = ModeloServicio::mdlMostrarDetalleServicios($item, $valor, $orden);
 
-		return $respuesta;
-
-	}
-
-
-
-
-
-
+        return $respuesta;
+    }
 }
-?>

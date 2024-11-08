@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloMascota
 {
 
-    
+
     /*=============================================
                     MOSTRAR MASCOTA
     =============================================*/
@@ -21,7 +21,6 @@ class ModeloMascota
             $stmt->execute();
 
             return $stmt->fetch();
-
         } else {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
@@ -29,13 +28,11 @@ class ModeloMascota
             $stmt->execute();
 
             return $stmt->fetchAll();
-
         }
 
         $stmt->close();
 
         $stmt = null;
-
     }
 
     /*=============================================
@@ -56,16 +53,13 @@ class ModeloMascota
         if ($stmt->execute()) {
 
             return "ok";
-
         } else {
 
             return "error";
-
         }
 
         $stmt->close();
         $stmt = null;
-
     }
 
     /*=============================================
@@ -82,21 +76,18 @@ class ModeloMascota
         $stmt->bindParam(":raza", $datos["raza"], PDO::PARAM_STR);
         $stmt->bindParam(":especie", $datos["especie"], PDO::PARAM_STR);
         $stmt->bindParam(":fechanacimiento", $datos["fechanacimiento"], PDO::PARAM_STR);
-       
+
         if ($stmt->execute()) {
 
             return "ok";
-
         } else {
 
             return "error";
-
         }
 
         $stmt->close();
-        
-        $stmt = null;
 
+        $stmt = null;
     }
 
     /*=============================================
@@ -113,19 +104,24 @@ class ModeloMascota
         if ($stmt->execute()) {
 
             return "ok";
-
         } else {
 
             return "error";
-
         }
 
         $stmt->close();
 
         $stmt = null;
-
     }
 
+    static public function listarMascotasPorCliente($id_cliente)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM mascota WHERE id_cliente = :id_cliente");
+        $stmt->bindParam(":id_cliente", $id_cliente, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+        $stmt->close();
+        $stmt = null;
+    }
 }

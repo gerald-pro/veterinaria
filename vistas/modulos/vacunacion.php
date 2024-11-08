@@ -99,11 +99,7 @@
 					<tbody>
 
 						<?php
-
-						$item = null;
-						$valor = null;
-
-						$vacunacion = ControladorVacunacion::ctrMostrarVacunacion($item, $valor);
+						$vacunacion = ControladorVacunacion::ctrMostrarVacunacion();
 
 						foreach ($vacunacion as $key => $value) {
 
@@ -187,18 +183,17 @@
 								<option value="">Seleccionar cliente</option>
 
 								<?php
-	
-									$clientes = ControladorCliente::ctrMostrarCliente(null, null);
 
-									foreach ($clientes as $key => $value) {
-										echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
-									}
+								$clientes = ControladorCliente::ctrMostrarCliente(null, null);
+
+								foreach ($clientes as $key => $value) {
+									echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+								}
 								?>
 							</select>
 
 						</div>
 					</div>
-
 
 					<!-- Mascota -->
 					<div class="form-group">
@@ -213,20 +208,8 @@
 							</div>
 
 							<select class="form-control input-lg" id="NuevoMascota" name="NuevoMascota" required>
-
 								<option value="">Seleccionar Mascota</option>
-
-								<?php
-								$item = null;
-								$valor = null;
-								$mascota = ControladorMascota::ctrMostrarMascota($item, $valor);
-
-								foreach ($mascota as $key => $value) {
-									echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
-								}
-								?>
 							</select>
-
 						</div>
 					</div>
 
@@ -316,6 +299,29 @@
 				</div><!-- /.modal-header -->
 
 				<div class="modal-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Cliente</font>
+							</font>
+						</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-user text-primary" aria-hidden="true"></i></span>
+							</div>
+
+							<select class="form-control input-lg" id="EditarCliente" name="EditarCliente" required>
+								<option value="">Seleccionar cliente</option>
+								<?php
+									$clientes = ControladorCliente::ctrMostrarCliente(null, null);
+
+									foreach ($clientes as $key => $value) {
+										echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
+									}
+								?>
+							</select>
+						</div>
+					</div>
 
 					<!-- Mascota -->
 					<div class="form-group">

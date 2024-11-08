@@ -92,11 +92,11 @@
 
                                             <div class="btn-group">
 
-                                                <button title="Editar Servicio" class="btn btn-warning btnEditarServicio" id="' . $value["idservicio"] . '" data-toggle="modal" data-target="#modalEditarServicio">
+                                                <button title="Editar Servicio" class="btn btn-warning btnEditarServicio" idServicio="' . $value["idservicio"] . '" data-toggle="modal" data-target="#modalEditarServicio">
                                                     <i class="fa fa-solid fa-pen"style="color: white;"></i>
                                                 </button>
 
-                                                <button title="Eliminar Servicio" class="btn btn-danger btnEliminarServicio" id="' . $value["idservicio"] . '">
+                                                <button title="Eliminar Servicio" class="btn btn-danger btnEliminarServicio" idServicio="' . $value["idservicio"] . '">
                                                     <i class="fa fa-trash"style="color: white;"></i>
                                                 </button>
 
@@ -171,8 +171,6 @@
     <!-- /.modal-dialog -->
 </div>
 
-
-
 <div class="modal fade" id="modalEditarServicio">
     <div class="modal-dialog">
     <div class="modal-content bg-primary">
@@ -193,7 +191,7 @@
                         </label>
                         <input type="text" class="form-control" id="EditarNombre" name="EditarNombre"
                             placeholder="Ingrese Nombre">
-                        <input type="hidden" name="id" id="id" required>
+                        <input type="hidden" name="idServicio" id="idServicio" required>
                     </div>
 
                     <div class="form-group">
@@ -202,7 +200,7 @@
                                 <font style="vertical-align: inherit;">Precio</font>
                             </font>
                         </label>
-                        <input type="decimal" class="form-control" id="EditarCosto" name="EditarCosto"
+                        <input type="number" class="form-control" id="EditarCosto" name="EditarCosto"
                             placeholder="Ingrese Precio">
                     </div>
 
@@ -226,9 +224,8 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<?php
 
+<?php
 $borrarServicio = new ControladorServicio();
 $borrarServicio->ctrBorrarServicio();
-
 ?>

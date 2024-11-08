@@ -171,7 +171,6 @@ class ControladorCitas
 
 	static public function ctrEliminarCita()
 	{
-
 		if (isset($_GET["idCita"])) {
 
 			$tabla = "citas";

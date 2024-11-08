@@ -101,17 +101,18 @@ $html = '
 
     <table margin-left="" border="1" cellpadding="5" style="font-size: 10px;">
 		<tr style="text-align: center; background-color: #D6D6D6;">
-			<th style="width: 120px;"><b>MASCOTA</b></th>
-			<th style="width: 120px;"><b>ESPECIE</b></th>
+			<th style="width: 120px;"><b>CLIENTE</b></th>
+			<th style="width: 80px;"><b>MASCOTA</b></th>
+			<th style="width: 80px;"><b>ESPECIE</b></th>
 			<th style="width: 150px;"><b>VETERINARIO(A)</b></th>
 			<th style="width: 165px;"><b>TIPO DE VACUNA</b></th>
-			<th style="width: 90px;"><b>FECHA</b></th>
+			<th style="width: 65px;"><b>FECHA</b></th>
 		</tr>';
 
         $respuesta = ControladorVacunacion::ctrEntreFechasVacunaciones($fechainicio, $fechafin);
 
         for($i = 0; $i < count($respuesta); $i++){
-
+			$cliente = $respuesta[$i]["cliente"];
 	        $mascota = $respuesta[$i]["mascota"];
 			$especie = $respuesta[$i]["especie"];
 	        $veterinario = $respuesta[$i]["veterinario"];
@@ -120,6 +121,7 @@ $html = '
             
             $html .= '
 				<tr>
+					<td style="text-align: center">' . $cliente . '</td>
 					<td style="text-align: center">' . $mascota . '</td>
 					<td style="text-align: center">' . $especie . '</td>
 					<td style="text-align: center">' . $veterinario . '</td>

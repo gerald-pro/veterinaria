@@ -5,14 +5,14 @@ class ControladorVacunacion
     /*=============================================
                 MOSTRAR VACUNACIÓN
     =============================================*/
-    static public function ctrMostrarVacunacion($item, $valor) {
-
-        $tabla = "vacunacion";
-
-        $respuesta = ModeloVacunacion::mdlMostrarVacunacion($tabla, $item, $valor);
-
+    static public function ctrMostrarVacunacion() {
+        $respuesta = ModeloVacunacion::mdlMostrarVacunacion();
         return $respuesta;
+    }
 
+    static public function buscarPorId($id) {
+        $respuesta = ModeloVacunacion::buscarPorId($id);
+        return $respuesta;
     }
 
     /*=============================================

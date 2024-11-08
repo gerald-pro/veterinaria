@@ -10,7 +10,7 @@ $(".tablas").on("click", ".btnEditarServicio", function () {
     datos.append("idServicio", idServicio);
 
     $.ajax({
-        url: "ajax/servicios.ajax.php",
+        url: "ajax/servicio.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
@@ -20,10 +20,8 @@ $(".tablas").on("click", ".btnEditarServicio", function () {
         success: function (respuesta) {
 
             $("#idServicio").val(respuesta["idservicio"]);
-
-            $("#editarNombreServicio").val(respuesta["nombre"]);
-
-            $("#editarPrecioServicio").val(respuesta["precio"]); 
+            $("#EditarNombre").val(respuesta["nombre"]);
+            $("#EditarCosto").val(respuesta["precio"]); 
         }
     }) 
 })
@@ -45,11 +43,8 @@ $(".tablas").on("click", ".btnEliminarServicio", function () {
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar servicio!'
     }).then(function (result) {
-
         if (result.value) {
-
-            window.location = "index.php?ruta=servicios&idServicio=" + idServicio;
-            
+            window.location = "index.php?rutas=servicio&id=" + idServicio;
         }
     })
 })

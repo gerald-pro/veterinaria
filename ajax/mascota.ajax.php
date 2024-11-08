@@ -32,3 +32,8 @@ if(isset($_POST["id"])){
     $mascota -> id = $_POST["id"];
     $mascota -> ajaxEditarMascota();
 }
+
+if (isset($_POST['idClienteMascotas'])) {
+    $idCliente = $_POST['idClienteMascotas'];
+    echo json_encode(ControladorMascota::ctrMostrarMascotasPorCliente($idCliente));
+}

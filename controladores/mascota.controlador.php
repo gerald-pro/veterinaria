@@ -14,7 +14,6 @@ class ControladorMascota
         $respuesta = ModeloMascota::mdlMostrarMascota($tabla, $item, $valor);
 
         return $respuesta;
-
     }
 
     /*=============================================
@@ -62,9 +61,7 @@ class ControladorMascota
                         })
 
                     </script>';
-
                 }
-
             } else {
 
                 echo '<script>
@@ -81,11 +78,8 @@ class ControladorMascota
                         })
 
                   </script>';
-
             }
-
         }
-
     }
 
 
@@ -138,10 +132,7 @@ class ControladorMascota
                                 })
 
                     </script>';
-
                 }
-
-
             } else {
 
                 echo '<script>
@@ -160,11 +151,8 @@ class ControladorMascota
                         })
 
                   </script>';
-
             }
-
         }
-
     }
 
 
@@ -204,9 +192,11 @@ class ControladorMascota
                     </script>';
             }
         }
-
     }
 
-    
+    static public function ctrMostrarMascotasPorCliente($idCliente)
+    {
+        $mascotas = ModeloMascota::listarMascotasPorCliente($idCliente);
+        return $mascotas;
+    }
 }
-?>

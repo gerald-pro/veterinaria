@@ -624,7 +624,7 @@ ALTER TABLE `consulta`
 --
 ALTER TABLE `detalle_pago_o_servicio`
   ADD CONSTRAINT `detalle_pago_o_servicio_ibfk_1` FOREIGN KEY (`id_pago_servicio`) REFERENCES `pago_servicio` (`idpagoservicio`),
-  ADD CONSTRAINT `detalle_pago_o_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`idservicio`);
+  ADD CONSTRAINT `detalle_pago_o_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`idservicio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mascota`
